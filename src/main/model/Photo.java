@@ -1,64 +1,52 @@
 package model;
 
-import java.awt.*;
-import javax.imageio.*;
-import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
+import model.effects.ConvolutionEffects;
+import model.effects.ReplacementEffects;
+import model.tools.ManageHex;
+import model.tools.ManageImage;
 
-public class Photo extends Effects {
-    private final String url;
-    private BufferedImage image;
+public class Photo extends ManageImage implements SimpleEffects {
+    private final ManageHex hexManager;
+    private final ConvolutionEffects convEffect;
+    private final ReplacementEffects replEffect;
+
 
     public Photo(String fileName, String fileType) {
-        this.url = fileName + "." + fileType;
-        try {
-            initializeImage();
-        } catch (IOException i) {
-            System.err.println("Unhandled IO Exception");
-        }
+        super(fileName + "." + fileType);
+        this.hexManager = new ManageHex();
+        this.convEffect = new ConvolutionEffects();
+        this.replEffect = new ReplacementEffects();
     }
 
-    public void initializeImage() throws IOException {
-        image = ImageIO.read(new File(url));
-    }
-
-    public void simpleRecolor(String newHex, String oldHex, int tolerance) {
-        int[] oldValues = stringToHex(oldHex);
-        int[] newValues = stringToHex(newHex);
-        preciseRecolor(
+    public void recolor(String newHex, String oldHex, int tolerance) {
+        int[] oldValues = hexManager.stringToHex(oldHex);
+        int[] newValues = hexManager.stringToHex(newHex);
+        recolor(
                 newValues,
                 new int[]{oldValues[0] - tolerance, oldValues[0] + tolerance},
                 new int[]{oldValues[1] - tolerance, oldValues[1] + tolerance},
                 new int[]{oldValues[2] - tolerance, oldValues[2] + tolerance});
     }
 
-    private int[] stringToHex(String hex) {
-        int red = Integer.parseInt(hex.substring(0, 2), 16);
-        int green = Integer.parseInt(hex.substring(2, 4), 16);
-        int blue = Integer.parseInt(hex.substring(4, 6), 16);
-
-        return new int[]{red, green, blue};
+    public void recolor(int[] nextColor, int[] redBounds, int[] greenBounds, int[] blueBounds) {
+        replEffect.recolor(super.getImageRef(), nextColor, redBounds, greenBounds, blueBounds);
     }
 
-
-    public void preciseRecolor(int[] nextColor, int[] redBounds, int[] greenBounds, int[] blueBounds) {
-        image = super.recolor(image, nextColor, redBounds, greenBounds, blueBounds);
+    public void blur() {
+        setImageRef(convEffect.blur(super.getImageRef()));
     }
 
-    public void displayImage() {
-        ImageIcon icon = new ImageIcon(image);
-        JFrame frame = new JFrame();
-        frame.setLayout(new FlowLayout());
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        JLabel lbl = new JLabel();
-        lbl.setIcon(icon);
-        frame.add(lbl);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public void blur(int intensity) {
+        for (int i = 0; i < intensity; i++) {
+            setImageRef(convEffect.blur(super.getImageRef()));
+        }
     }
 
-//    public String getUrl() {
-//        return url;
-//    }
+    public void invert() {
+        replEffect.invert(super.getImageRef());
+    }
+
+    public void grayscale() {
+        replEffect.grayscale(super.getImageRef());
+    }
 }
