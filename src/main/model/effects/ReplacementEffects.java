@@ -2,12 +2,17 @@ package model.effects;
 
 import java.awt.image.*;
 
+// A class that holds helper methods that apply pixel by pixel recoloring effects onto a BufferedImage
 public class ReplacementEffects {
+    // REQUIRES: nextColor, redBounds, greenBounds, and blueBounds are all 2 element lists [x, y],
+    // where x is within the range [0, y] and y is in the range [x, 256]
+    // MODIFIES: Writes changes directly to the input image object
+    // EFFECTS: Recolors all the pixels within the red, green, and blue bounds to the nextColor color
     public void recolor(BufferedImage image,
-                                 int[] nextColor,
-                                 int[] redBounds,
-                                 int[] greenBounds,
-                                 int[] blueBounds) {
+                        int[] nextColor,
+                        int[] redBounds,
+                        int[] greenBounds,
+                        int[] blueBounds) {
         int width = image.getWidth();
         int height = image.getHeight();
         WritableRaster raster = image.getRaster();
@@ -25,6 +30,8 @@ public class ReplacementEffects {
         }
     }
 
+    // MODIFIES: Writes changes directly to the input image object
+    // EFFECTS: Inverts the colors of a image
     public void invert(BufferedImage image) {
         int width = image.getWidth();
         int height = image.getHeight();
@@ -43,6 +50,8 @@ public class ReplacementEffects {
         }
     }
 
+    // MODIFIES: Writes changes directly to the input image object
+    // EFFECTS: Converts a colored image to a grayscale image
     public void grayscale(BufferedImage image) {
         int width = image.getWidth();
         int height = image.getHeight();
@@ -63,6 +72,8 @@ public class ReplacementEffects {
         }
     }
 
+    // REQUIRES: bounds is a 2 element lists [x, y], where x is within the range [0, y] and y is in the range [x, 256]
+    // EFFECTS: Returns true if a color's value is within the bounds for that color
     private boolean filter(int[] bounds, int color) {
         return (color > bounds[0] && color < bounds[1]);
     }

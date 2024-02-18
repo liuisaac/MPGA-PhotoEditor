@@ -4,7 +4,7 @@ import model.Photo;
 
 public class Main {
     public static void main(String[] args) {
-        Photo p = new Photo("src/assets/test", "png");
+        Photo p = new Photo("src/assets/test.png");
 
         try {
             p.recolor("000000", "ffffff", 100);

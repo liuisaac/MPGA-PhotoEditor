@@ -7,10 +7,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+// A class that manages image functions, conversions, and Image object references
 public class ManageImage {
     private final String url;
     private BufferedImage image;
 
+    // REQUIRES: A local url in the form /src/assets/...
+    // MODIFIES: this
+    // EFFECTS: constructs a ManageImage object, prints IOException if filepath doesn't exist or image is corrupted
     public ManageImage(String url) {
         this.url = url;
         try {
@@ -28,10 +32,12 @@ public class ManageImage {
         this.image = image;
     }
 
+    // EFFECTS: attempts to create a BufferedImage from the url provided when an object is constructed
     private void initializeImage() throws IOException {
         image = ImageIO.read(new File(url));
     }
 
+    // EFFECTS: displays the image to a full screen window
     public void displayImage() {
         ImageIcon icon = new ImageIcon(image);
         JFrame frame = new JFrame();
