@@ -22,7 +22,7 @@ public class ConvolutionEffectsTest {
 
     @BeforeEach
     void setup() {
-        image = new Photo("src/assets/test/threetest.png");
+        image = new Photo("src/assets/test/threetest.png", "image");
         convEffects = new ConvolutionEffects();
         width = image.getWidth();
         height = image.getHeight();

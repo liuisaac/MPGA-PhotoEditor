@@ -23,4 +23,4 @@
 - As a user, I want to select 1 or more photos out of the list of photos and view them
 - As a user, I want to be able to specify the range of the color filter
 - As a user, I want to be able to preview and apply a color filter to selected photos
-- As a user, I want to be able to save the changes to selected photos as new photos and revisit them later
+- As a user, I want to be able to have access to basic image tools (blur, invert, grayscale, etc.)

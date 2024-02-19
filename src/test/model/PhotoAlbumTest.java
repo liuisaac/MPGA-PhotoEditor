@@ -16,13 +16,6 @@ public class PhotoAlbumTest {
     private Photo photoT;
     private PhotoAlbum album;
 
-    private WritableRaster raster;
-    private int[][][] imageArray;
-    private int[][][] outputArray;
-
-    private int width;
-    private int height;
-
     // Test helper that checks if two bufferedImages are equivalent
     private boolean equalPhotos(BufferedImage first, BufferedImage second) {
         //not same image size
@@ -41,9 +34,9 @@ public class PhotoAlbumTest {
 
     @BeforeEach
     void setup() {
-        photoH = new Photo("src/assets/test/happy.png");
-        photoL = new Photo("src/assets/test/logo.png");
-        photoT = new Photo("src/assets/test/threetest.png");
+        photoH = new Photo("src/assets/test/happy.png", "photoH");
+        photoL = new Photo("src/assets/test/logo.png", "photoL");
+        photoT = new Photo("src/assets/test/threetest.png", "photoT");
 
         album = new PhotoAlbum();
 
@@ -138,9 +131,9 @@ public class PhotoAlbumTest {
         album.selectPhoto(photoT);
         album.selectPhoto(photoH);
 
-        Photo tcopy = new Photo("src/assets/test/threetest.png");
-        Photo hcopy = new Photo("src/assets/test/happy.png");
-        Photo lcopy = new Photo("src/assets/test/logo.png");
+        Photo tcopy = new Photo("src/assets/test/threetest.png", "tcopy");
+        Photo hcopy = new Photo("src/assets/test/happy.png", "hcopy");
+        Photo lcopy = new Photo("src/assets/test/logo.png", "lcopy");
 
         assertEquals(2, album.getSelectedSize());
 
@@ -162,9 +155,9 @@ public class PhotoAlbumTest {
         album.selectPhoto(photoT);
         album.selectPhoto(photoH);
 
-        Photo tcopy = new Photo("src/assets/test/threetest.png");
-        Photo hcopy = new Photo("src/assets/test/happy.png");
-        Photo lcopy = new Photo("src/assets/test/logo.png");
+        Photo tcopy = new Photo("src/assets/test/threetest.png", "tcopy");
+        Photo hcopy = new Photo("src/assets/test/happy.png", "hcopy");
+        Photo lcopy = new Photo("src/assets/test/logo.png", "lcopy");
 
         assertEquals(2, album.getSelectedSize());
 
@@ -195,9 +188,9 @@ public class PhotoAlbumTest {
         album.selectPhoto(photoT);
         album.selectPhoto(photoH);
 
-        Photo tcopy = new Photo("src/assets/test/threetest.png");
-        Photo hcopy = new Photo("src/assets/test/happy.png");
-        Photo lcopy = new Photo("src/assets/test/logo.png");
+        Photo tcopy = new Photo("src/assets/test/threetest.png", "tcopy");
+        Photo hcopy = new Photo("src/assets/test/happy.png", "hcopy");
+        Photo lcopy = new Photo("src/assets/test/logo.png", "lcopy");
 
         assertEquals(2, album.getSelectedSize());
 
@@ -219,9 +212,9 @@ public class PhotoAlbumTest {
         album.selectPhoto(photoT);
         album.selectPhoto(photoH);
 
-        Photo tcopy = new Photo("src/assets/test/threetest.png");
-        Photo hcopy = new Photo("src/assets/test/happy.png");
-        Photo lcopy = new Photo("src/assets/test/logo.png");
+        Photo tcopy = new Photo("src/assets/test/threetest.png", "tcopy");
+        Photo hcopy = new Photo("src/assets/test/happy.png", "hcopy");
+        Photo lcopy = new Photo("src/assets/test/logo.png", "lcopy");
 
         assertEquals(2, album.getSelectedSize());
 
@@ -243,9 +236,9 @@ public class PhotoAlbumTest {
         album.selectPhoto(photoT);
         album.selectPhoto(photoH);
 
-        Photo tcopy = new Photo("src/assets/test/threetest.png");
-        Photo hcopy = new Photo("src/assets/test/happy.png");
-        Photo lcopy = new Photo("src/assets/test/logo.png");
+        Photo tcopy = new Photo("src/assets/test/threetest.png", "tcopy");
+        Photo hcopy = new Photo("src/assets/test/happy.png", "hcopy");
+        Photo lcopy = new Photo("src/assets/test/logo.png", "lcopy");
 
         assertEquals(2, album.getSelectedSize());
 
@@ -267,9 +260,9 @@ public class PhotoAlbumTest {
         album.selectPhoto(photoT);
         album.selectPhoto(photoH);
 
-        Photo tcopy = new Photo("src/assets/test/threetest.png");
-        Photo hcopy = new Photo("src/assets/test/happy.png");
-        Photo lcopy = new Photo("src/assets/test/logo.png");
+        Photo tcopy = new Photo("src/assets/test/threetest.png", "tcopy");
+        Photo hcopy = new Photo("src/assets/test/happy.png", "hcopt");
+        Photo lcopy = new Photo("src/assets/test/logo.png", "lcopy");
 
         assertEquals(2, album.getSelectedSize());
 

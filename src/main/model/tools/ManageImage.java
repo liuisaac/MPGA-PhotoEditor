@@ -11,18 +11,17 @@ import java.io.IOException;
 
 // A class that manages image functions, conversions, and Image object references
 public abstract class ManageImage implements SimpleEffects {
-    private final String url;
     private BufferedImage image;
 
     // REQUIRES: A local url in the form src/assets/...
     // MODIFIES: this
     // EFFECTS: constructs a ManageImage object, prints IOException if filepath doesn't exist or image is corrupted
     public ManageImage(String url) {
-        this.url = url;
         try {
             this.image = ImageIO.read(new File(url));
         } catch (IOException i) {
 //            System.err.println("Unhandled IO Exception");
+
         }
     }
 
@@ -43,12 +42,11 @@ public abstract class ManageImage implements SimpleEffects {
         frame.setVisible(true);
         ImageIcon icon = new ImageIcon(
                 image.getScaledInstance(
-                        Math.min(frame.getWidth(), frame.getHeight()),
-                        Math.min(frame.getWidth(), frame.getHeight()),
+                        Math.min(frame.getWidth(), frame.getHeight() * image.getWidth() / image.getHeight()),
+                        Math.min(frame.getWidth() * image.getHeight() / image.getWidth(), frame.getHeight()),
                         Image.SCALE_SMOOTH));
         lbl.setIcon(icon);
         frame.add(lbl);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

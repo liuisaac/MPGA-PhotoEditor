@@ -31,7 +31,7 @@ public class PhotoTest {
 
     @BeforeEach
     void setup() {
-        p = new Photo("src/assets/test/threetest.png");
+        p = new Photo("src/assets/test/threetest.png", "p");
         width = p.getWidth();
         height = p.getHeight();
         raster = p.getRaster();

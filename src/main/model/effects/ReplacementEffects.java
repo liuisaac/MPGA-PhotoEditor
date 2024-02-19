@@ -6,7 +6,7 @@ import java.awt.image.*;
 public class ReplacementEffects {
     // REQUIRES: nextColor, redBounds, greenBounds, and blueBounds are all 2 element lists [x, y],
     // where x is within the range [0, y] and y is in the range [x, 255]
-    // MODIFIES: Writes changes directly to the input image object
+    // MODIFIES: image
     // EFFECTS: Recolors all the pixels within the red, green, and blue bounds to the nextColor color
     public void recolor(BufferedImage image,
                         int[] nextColor,
@@ -30,7 +30,7 @@ public class ReplacementEffects {
         }
     }
 
-    // MODIFIES: Writes changes directly to the input image object
+    // MODIFIES: image
     // EFFECTS: Inverts the colors of a image
     public void invert(BufferedImage image) {
         int width = image.getWidth();
@@ -50,7 +50,7 @@ public class ReplacementEffects {
         }
     }
 
-    // MODIFIES: Writes changes directly to the input image object
+    // MODIFIES: image
     // EFFECTS: Converts a colored image to a grayscale image
     public void grayscale(BufferedImage image) {
         int width = image.getWidth();

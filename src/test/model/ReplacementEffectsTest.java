@@ -31,7 +31,7 @@ public class ReplacementEffectsTest {
 
     @BeforeEach
     void setup() {
-        image = new Photo("src/assets/test/threetest.png");
+        image = new Photo("src/assets/test/threetest.png", "image");
         replEffects = new ReplacementEffects();
         width = image.getWidth();
         height = image.getHeight();
