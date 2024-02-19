@@ -7,11 +7,11 @@ import model.tools.ManageImage;
 import java.awt.image.WritableRaster;
 
 // A class that represents a Photo that can be modified
-public class Photo extends ManageImage implements SimpleEffects {
+public class Photo extends ManageImage {
     private final ConvolutionEffects convEffect;
     private final ReplacementEffects replEffect;
 
-    // REQUIRES: url corresponds to a valid image path (including the file extension) within the project repository
+    // REQUIRES: url corresponds to a valid PNG image path (including the file extension) within the project repository
     // MODIFIES: this
     // EFFECTS: Creates a photo object based on the image directory
     public Photo(String url) {

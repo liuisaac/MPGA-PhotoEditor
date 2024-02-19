@@ -1,5 +1,7 @@
 package model.tools;
 
+import model.SimpleEffects;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 // A class that manages image functions, conversions, and Image object references
-public class ManageImage {
+public abstract class ManageImage implements SimpleEffects {
     private final String url;
     private BufferedImage image;
 
@@ -18,9 +20,9 @@ public class ManageImage {
     public ManageImage(String url) {
         this.url = url;
         try {
-            initializeImage();
+            this.image = ImageIO.read(new File(url));
         } catch (IOException i) {
-            System.err.println("Unhandled IO Exception");
+//            System.err.println("Unhandled IO Exception");
         }
     }
 
@@ -30,11 +32,6 @@ public class ManageImage {
 
     public void setImageRef(BufferedImage image) {
         this.image = image;
-    }
-
-    // EFFECTS: attempts to create a BufferedImage from the url provided when an object is constructed
-    private void initializeImage() throws IOException {
-        image = ImageIO.read(new File(url));
     }
 
     // EFFECTS: displays the image to a full screen window

@@ -22,9 +22,9 @@ public class ReplacementEffectsTest {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 int[] pixels = raster.getPixel(x, y, (int[]) null);
-                assertEquals(pixels[0], array[x][y][0]);
-                assertEquals(pixels[1], array[x][y][1]);
-                assertEquals(pixels[2], array[x][y][2]);
+                assertEquals(array[x][y][0], pixels[0]);
+                assertEquals(array[x][y][1], pixels[1]);
+                assertEquals(array[x][y][2], pixels[2]);
             }
         }
     }

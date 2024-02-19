@@ -21,9 +21,12 @@ public class PhotoAlbum implements SimpleEffects {
     }
 
     // MODIFIES: this
-    // EFFECTS: Removes the photo to the photo album
+    // EFFECTS: Removes the first instance of photo to the photo album
     public void removePhoto(Photo p) {
         album.remove(p);
+        if (!album.contains(p)) {
+            selected.remove(p);
+        }
     }
 
     // MODIFIES: this
@@ -31,8 +34,6 @@ public class PhotoAlbum implements SimpleEffects {
     public void selectPhoto(Photo p) {
         if (album.contains(p) && !selected.contains(p)) {
             selected.add(p);
-        } else {
-            System.err.println("Cannot select photo. (Photo is either already selected or not in album)");
         }
     }
 
@@ -41,8 +42,6 @@ public class PhotoAlbum implements SimpleEffects {
     public void deselectPhoto(Photo p) {
         if (selected.contains(p)) {
             selected.remove(p);
-        } else {
-            System.err.println("Cannot deselect photo. (Photo is not selected)");
         }
     }
 

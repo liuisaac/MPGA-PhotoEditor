@@ -47,9 +47,9 @@ public class ConvolutionEffectsTest {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 int[] pixels = raster.getPixel(x, y, (int[]) null);
-                    assertEquals(pixels[0], imageArray[x][y][0]);
-                    assertEquals(pixels[1], imageArray[x][y][1]);
-                    assertEquals(pixels[2], imageArray[x][y][2]);
+                    assertEquals(imageArray[x][y][0], pixels[0]);
+                    assertEquals(imageArray[x][y][1], pixels[1]);
+                    assertEquals(imageArray[x][y][2], pixels[2]);
             }
         }
         //method
@@ -59,9 +59,9 @@ public class ConvolutionEffectsTest {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 int[] pixels = raster.getPixel(x, y, (int[]) null);
-                assertEquals(pixels[0], outputArray[x][y][0]);
-                assertEquals(pixels[1], outputArray[x][y][1]);
-                assertEquals(pixels[2], outputArray[x][y][2]);
+                assertEquals(outputArray[x][y][0], pixels[0]);
+                assertEquals(outputArray[x][y][1], pixels[1]);
+                assertEquals(outputArray[x][y][2], pixels[2]);
             }
         }
     }
