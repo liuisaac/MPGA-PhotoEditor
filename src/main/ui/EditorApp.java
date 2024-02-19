@@ -4,7 +4,6 @@ import model.PhotoAlbum;
 import model.Photo;
 
 import java.io.File;
-import java.util.Scanner;
 
 // A class that manages the startup, decision-behaviour, and closing of the application
 public class EditorApp extends EditorUtils {
