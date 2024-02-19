@@ -77,12 +77,14 @@ public class PhotoAlbumTest {
 
     @Test
     void testSelectPhoto() {
+        Photo photoQ = new Photo("src/assets/test/threetest.png", "photoT");
         album.selectPhoto(photoH);
 
         assertEquals(1, album.getSelectedSize());
 
         album.selectPhoto(photoT);
         album.selectPhoto(photoH);
+        album.selectPhoto(photoQ);
 
         assertEquals(2, album.getSelectedSize());
 
@@ -114,6 +116,10 @@ public class PhotoAlbumTest {
         assertEquals(albumList.get(0), photoH);
         assertEquals(albumList.get(1), photoT);
         assertEquals(albumList.get(2), photoL);
+
+        album.deselectPhoto(photoT);
+
+        assertEquals(2, album.getSelectedSize());
 
         album.deselectPhoto(photoT);
 
