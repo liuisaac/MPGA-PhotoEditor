@@ -93,4 +93,10 @@ public class PhotoTest {
 
         equalPhotos(outputArray2);
     }
+
+    @Test
+    void testGetName() {
+        // Not necessary, just to make jacoco happy
+        assertEquals(p.getName(), "p");
+    }
 }

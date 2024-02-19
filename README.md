@@ -19,8 +19,10 @@
 
 
 ## User Stories
-- As a user, I want to be able to upload a photo and add it to a list of uploaded photos
+- As a user, I want to be able to add multiple uploaded photos to a list of uploaded photos
+- As a user, I want to be able to list all / only the selected photos within a list of uploaded photos
 - As a user, I want to select 1 or more photos out of the list of photos and view them
 - As a user, I want to be able to specify the range of the color filter
 - As a user, I want to be able to preview and apply a color filter to selected photos
-- As a user, I want to be able to have access to basic image tools (blur, invert, grayscale, etc.)
+- As a user, I want to be able to have access to basic image tools (blur, invert, grayscale, etc.) 
+- As a user, I want to be able to save my photos after ending the program [not relevant for phase 1]
