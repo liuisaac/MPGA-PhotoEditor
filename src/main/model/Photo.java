@@ -2,7 +2,7 @@ package model;
 
 import model.effects.ConvolutionEffects;
 import model.effects.ReplacementEffects;
-import model.tools.ManageImage;
+import ui.tools.ManageImage;
 
 import java.awt.image.WritableRaster;
 

@@ -1,4 +1,4 @@
-package model.tools;
+package ui.tools;
 
 import model.SimpleEffects;
 
