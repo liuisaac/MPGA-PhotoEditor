@@ -4,6 +4,8 @@ import model.effects.ConvolutionEffects;
 import model.effects.ReplacementEffects;
 import model.tools.ManageImage;
 
+import java.awt.image.WritableRaster;
+
 // A class that represents a Photo that can be modified
 public class Photo extends ManageImage implements SimpleEffects {
     private final ConvolutionEffects convEffect;
@@ -80,5 +82,17 @@ public class Photo extends ManageImage implements SimpleEffects {
         int blue = Integer.parseInt(hex.substring(4, 6), 16);
 
         return new int[]{red, green, blue};
+    }
+
+    public int getWidth() {
+        return getImageRef().getWidth();
+    }
+
+    public int getHeight() {
+        return getImageRef().getHeight();
+    }
+
+    public WritableRaster getRaster() {
+        return getImageRef().getRaster();
     }
 }

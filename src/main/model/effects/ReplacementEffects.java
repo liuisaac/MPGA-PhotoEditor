@@ -5,7 +5,7 @@ import java.awt.image.*;
 // A class that holds helper methods that apply pixel by pixel recoloring effects onto a BufferedImage
 public class ReplacementEffects {
     // REQUIRES: nextColor, redBounds, greenBounds, and blueBounds are all 2 element lists [x, y],
-    // where x is within the range [0, y] and y is in the range [x, 256]
+    // where x is within the range [0, y] and y is in the range [x, 255]
     // MODIFIES: Writes changes directly to the input image object
     // EFFECTS: Recolors all the pixels within the red, green, and blue bounds to the nextColor color
     public void recolor(BufferedImage image,

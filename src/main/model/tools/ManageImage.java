@@ -12,7 +12,7 @@ public class ManageImage {
     private final String url;
     private BufferedImage image;
 
-    // REQUIRES: A local url in the form /src/assets/...
+    // REQUIRES: A local url in the form src/assets/...
     // MODIFIES: this
     // EFFECTS: constructs a ManageImage object, prints IOException if filepath doesn't exist or image is corrupted
     public ManageImage(String url) {
@@ -39,11 +39,16 @@ public class ManageImage {
 
     // EFFECTS: displays the image to a full screen window
     public void displayImage() {
-        ImageIcon icon = new ImageIcon(image);
         JFrame frame = new JFrame();
         frame.setLayout(new FlowLayout());
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         JLabel lbl = new JLabel();
+        frame.setVisible(true);
+        ImageIcon icon = new ImageIcon(
+                image.getScaledInstance(
+                        Math.min(frame.getWidth(), frame.getHeight()),
+                        Math.min(frame.getWidth(), frame.getHeight()),
+                        Image.SCALE_SMOOTH));
         lbl.setIcon(icon);
         frame.add(lbl);
         frame.setVisible(true);
