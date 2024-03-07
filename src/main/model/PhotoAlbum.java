@@ -120,4 +120,12 @@ public class PhotoAlbum implements SimpleEffects {
     public int getSelectedSize() {
         return selected.size();
     }
+
+    public void setAlbum(ArrayList<Photo> album) {
+        this.album = album;
+    }
+
+    public void setSelected(ArrayList<Photo> selected) {
+        this.selected = selected;
+    }
 }

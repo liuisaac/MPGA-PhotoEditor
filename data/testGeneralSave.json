@@ -1,0 +1,22 @@
+{
+  "name": "general",
+  "all": [
+    {
+      "name": "CBX Partners Logo",
+      "path": "src/assets/input/logo-preview.png"
+    },
+    {
+      "name": "happy",
+      "path": "src/assets/test/happy.png"
+    },
+    {
+      "name": "test",
+      "path": "src/assets/input/test.png"
+    }
+  ],
+  "selected": [
+    {
+      "name": "test"
+    }
+  ]
+}

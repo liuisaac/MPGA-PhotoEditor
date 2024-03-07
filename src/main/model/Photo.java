@@ -11,12 +11,14 @@ public class Photo extends ManageImage {
     private final ConvolutionEffects convEffect;
     private final ReplacementEffects replEffect;
     private final String name;
+    private final String url;
 
     // REQUIRES: url corresponds to a valid PNG image path (including the file extension) within the project repository
     // MODIFIES: this
     // EFFECTS: Creates a photo object based on the image directory
     public Photo(String url, String name) {
         super(url);
+        this.url = url;
         this.name = name;
         this.convEffect = new ConvolutionEffects();
         this.replEffect = new ReplacementEffects();
@@ -84,6 +86,10 @@ public class Photo extends ManageImage {
         int blue = Integer.parseInt(hex.substring(4, 6), 16);
 
         return new int[]{red, green, blue};
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public int getWidth() {
