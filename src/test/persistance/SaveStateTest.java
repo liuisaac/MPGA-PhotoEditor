@@ -75,4 +75,16 @@ public class SaveStateTest {
             fail("Exception should not have been thrown");
         }
     }
+
+    @Test
+    void testGetSaveName() {
+        try {
+            SaveState state = new SaveState("generateGeneralSave");
+            assertEquals("generateGeneralSave", state.getSaveName());
+            state = new SaveState("genGeneralSave");
+            assertEquals("genGeneralSave", state.getSaveName());
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
+    }
 }
