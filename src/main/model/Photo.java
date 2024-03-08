@@ -4,14 +4,17 @@ import model.effects.ConvolutionEffects;
 import model.effects.ReplacementEffects;
 import ui.tools.ManageImage;
 
+import javax.imageio.ImageIO;
 import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.IOException;
 
 // A class that represents a Photo that can be modified
 public class Photo extends ManageImage {
     private final ConvolutionEffects convEffect;
     private final ReplacementEffects replEffect;
     private final String name;
-    private final String url;
+    private String url;
 
     // REQUIRES: url corresponds to a valid PNG image path (including the file extension) within the project repository
     // MODIFIES: this
@@ -76,6 +79,20 @@ public class Photo extends ManageImage {
     @Override
     public void grayscale() {
         replEffect.grayscale(super.getImageRef());
+    }
+
+    // REQUIRES: A valid folder directory as a string
+    // MODIFIES: this
+    // EFFECTS: Exports the photo as a new photo to the directory given
+    public void exportImage(String directory) {
+        try {
+            File outputfile = new File(directory);
+            ImageIO.write(getImageRef(), "png", outputfile);
+            this.url = directory;
+        } catch (IOException ignored) {
+            //pass
+            System.out.println("error here..");
+        }
     }
 
     // REQUIRES: hex is a valid 6 digit hexadecimal value

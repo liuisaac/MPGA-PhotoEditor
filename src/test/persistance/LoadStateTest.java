@@ -10,7 +10,7 @@ public class LoadStateTest {
     @Test
     void testReaderNonExistentFile() {
         try {
-            LoadState reader = new LoadState("./data/noSuchFile.json");
+            LoadState reader = new LoadState("./data/test/noSuchFile.json");
             fail("IOException expected");
         } catch (IOException e) {
             // pass
@@ -20,7 +20,7 @@ public class LoadStateTest {
     @Test
     void testReaderEmptyWorkRoom() {
         try {
-            LoadState reader = new LoadState("./data/testEmptySave.json");
+            LoadState reader = new LoadState("./data/test/testEmptySave.json");
             PhotoAlbum album = reader.getAlbum();
             assertEquals(0, album.getSelectedSize());
             assertEquals(0, album.getAlbumSize());
@@ -32,7 +32,7 @@ public class LoadStateTest {
     @Test
     void testReaderGeneralWorkRoom() {
         try {
-            LoadState reader = new LoadState("./data/testGeneralSave.json");
+            LoadState reader = new LoadState("./data/test/testGeneralSave.json");
             PhotoAlbum album = reader.getAlbum();
             assertEquals(1, album.getSelectedSize());
             assertEquals(3, album.getAlbumSize());

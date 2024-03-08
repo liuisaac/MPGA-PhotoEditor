@@ -25,5 +25,5 @@
 - As a user, I want to be able to specify the range of the color filter
 - As a user, I want to be able to preview and apply a color filter to selected photos
 - As a user, I want to be able to have access to basic image tools (blur, invert, grayscale, etc.) 
-- As a user, I want to be able to have the option to load all the previous photos in file
-- As a user, I want to be able to have the option to save my all the photos to file
+- As a user, when I start the application, I want to be given the option to load my album from file.
+- As a user, when I select the quit option from the application menu, I want to be reminded to save my album to file and have the option to do so or not.

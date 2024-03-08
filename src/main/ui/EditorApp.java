@@ -2,12 +2,17 @@ package ui;
 
 import model.PhotoAlbum;
 import model.Photo;
+import persistance.LoadState;
+import persistance.SaveState;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 // A class that manages the startup, decision-behaviour, and closing of the application
 public class EditorApp extends EditorUtils {
-    private final PhotoAlbum photoAlbum;
+    private PhotoAlbum photoAlbum;
 
     // MODIFIES: this
     // EFFECTS: Constructs the EditorApp object, initializes fields, and kickstart the program decision tree
@@ -70,8 +75,8 @@ public class EditorApp extends EditorUtils {
                 option4();
                 break;
             case 5:
-                System.out.println("Quitting...");
-                exit();
+                option5();
+                quit();
                 break;
             default:
                 System.err.println("That is not a valid option, please try again.");
@@ -166,35 +171,110 @@ public class EditorApp extends EditorUtils {
         }
     }
 
+    private void option5() {
+        Scanner input = new Scanner(System.in);
+        String answer = "";
+        while (!answer.equals("y") && !answer.equals("n")) {
+            System.out.print("\n\u001B[31m SAVE? Y/N  ");
+            answer = input.nextLine();
+            if (answer.equalsIgnoreCase("y")) {
+                save();
+                break;
+            } else if (answer.equalsIgnoreCase("n")) {
+                break;
+            }
+            System.out.print("\n\u001B[31m invalid argument: try again");
+        }
+    }
+
+    private void quit() {
+        Scanner input = new Scanner(System.in);
+        String answer = "";
+        while (!answer.equals("y") && !answer.equals("n")) {
+            System.out.print("\n\u001B[31m QUIT? Y/N  ");
+            answer = input.nextLine();
+            if (answer.equalsIgnoreCase("y")) {
+                exit();
+            } else if (answer.equalsIgnoreCase("n")) {
+                break;
+            }
+            System.out.print("\n\u001B[31m invalid argument: try again");
+        }
+    }
+
+    private void save() {
+        Scanner input = new Scanner(System.in);
+        String answer;
+        boolean on = true;
+        while (on) {
+            System.out.print("\n\u001B[31m What would you like to name this save? "
+                    + "(WARNING: this is NOT case-sensitive)");
+            answer = input.nextLine();
+            try {
+                SaveState ss = new SaveState(answer);
+                ss.exportImages(photoAlbum);
+                ss.write(photoAlbum);
+                ss.close();
+                on = false;
+                System.out.println(" Success! File Saved to " + answer);
+            } catch (IOException e) {
+                System.out.print("\n\u001B[31m invalid filename: try again");
+            }
+        }
+    }
+
     // MODIFIES: this
     // EFFECTS: Loads all the png files in the path to the photo album
     private void load() {
-        File folder = new File("src/assets/input");
+        File folder = new File("./data");
         File[] files = folder.listFiles();
 
+        assert files != null;
         if (files.length == 0) {
-            System.out.println("\u001B[31m  No Files in src/assets/input! Closing program");
+            System.out.println("\u001B[31m  No Saves in data! Create a first save?");
             exit();
         }
+
+        ArrayList<String> fileNames = getFileDestination(files);
+
+        int answer = numericalInput(1, fileNames.size() + 1);
+
+        try {
+            System.out.println("./data/" + fileNames.get(answer - 1) + "/" + fileNames.get(answer - 1) + ".json");
+            LoadState openstate = new LoadState("./data/"
+                    + fileNames.get(answer - 1)
+                    + "/"
+                    + fileNames.get(answer - 1)
+                    + ".json");
+            photoAlbum = openstate.getAlbum();
+            System.out.println("Successfully Loaded Save!");
+        } catch (IOException e) {
+            System.out.println("Save failed. Try Again.");
+        }
+    }
+
+    private ArrayList<String> getFileDestination(File[] files) {
+        int indexer = 1;
+        ArrayList<String> fileNames = new ArrayList<String>();
 
         for (File file : files) {
-            String fileName = file.getName();
-            String name = fileName.substring(0, fileName.lastIndexOf('.'));
-            String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
-            if (file.isFile() && extension.equals("png")) {
-                photoAlbum.addPhoto(new Photo("src/assets/input/" + fileName, name));
-                System.out.println("\t\u001B[33m - Photo " + fileName + " loaded!");
+            if (file.isDirectory()) {
+                File[] subfiles = file.listFiles();
+                assert subfiles != null;
+                for (File subfile : subfiles) {
+                    String fileName = subfile.getName();
+                    String name = fileName.substring(0, fileName.lastIndexOf('.'));
+                    String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+                    if (subfile.isFile() && extension.equals("json")) {
+                        System.out.println(indexer + ". " + name);
+                        fileNames.add(name);
+                        indexer++;
+                    }
+                }
             }
         }
-
-        if (photoAlbum.getAlbumSize() == 0) {
-            System.err.println("Error: None of the files in [input] are valid .png files!");
-            exit();
-        } else {
-            System.out.println("\u001B[32m Successfully loaded "
-                    + (photoAlbum.getAlbumSize())
-                    + "\u001B[32m item(s)!");
-        }
+        return fileNames;
     }
 
     // MODIFIES: files within src/assets/output
@@ -204,6 +284,7 @@ public class EditorApp extends EditorUtils {
         File[] files = folder.listFiles();
         int count = 0;
 
+        assert files != null;
         for (File file : files) {
             file.delete();
             count++;

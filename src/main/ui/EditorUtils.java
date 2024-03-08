@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 
 // A class that sorts utility / helper methods for the EditorApp class
 public class EditorUtils {
+    private final char[] invalidCharacters = {'<', '>', ':', '"', '/', '\\', '|', '?', '*', '.'};
+
     // MODIFIES: this
     // EFFECTS: Handles a basic yes or no input through terminal, returns true if yes is selected
     protected boolean yesOrNo() {
@@ -112,8 +114,35 @@ public class EditorUtils {
             return;
         }
         System.out.print("\n\n\u001B[36m Declare the name of the image: ");
-        String name = input.nextLine();
+        String name = "";
+        while (name.equals("")) {
+            String tryNextLine = input.nextLine();
+            if (isValidFilename(tryNextLine) && notInArrayList(album, tryNextLine)) {
+                name = tryNextLine;
+            } else {
+                System.err.print("Photo name already exists. Try Again: ");
+            }
+        }
         album.addPhoto(new Photo(temp, name));
+    }
+
+    private boolean notInArrayList(PhotoAlbum photos, String name) {
+        ArrayList<Photo> pictures = photos.getAlbum();
+        for (Photo photo : pictures) {
+            if (photo.getName().equalsIgnoreCase(name)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isValidFilename(String filename) {
+        for (char invalidChar : invalidCharacters) {
+            if (filename.indexOf(invalidChar) != -1) {
+                return false;
+            }
+        }
+        return true;
     }
 
     // MODIFIES: album

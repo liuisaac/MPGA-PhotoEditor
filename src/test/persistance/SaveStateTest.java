@@ -31,7 +31,7 @@ public class SaveStateTest {
             state.write(album);
             state.close();
 
-            LoadState reader = new LoadState("./data/generateEmptySave.json");
+            LoadState reader = new LoadState("./data/generateEmptySave/generateEmptySave.json");
             album = reader.getAlbum();
             assertEquals(0, album.getSelectedSize());
             assertEquals(0, album.getAlbumSize());
@@ -55,7 +55,7 @@ public class SaveStateTest {
             state.write(album);
             state.close();
 
-            LoadState reader = new LoadState("./data/generateGeneralSave.json");
+            LoadState reader = new LoadState("./data/generateGeneralSave/generateGeneralSave.json");
             album = reader.getAlbum();
             assertEquals(1, album.getSelectedSize());
             assertEquals(3, album.getAlbumSize());

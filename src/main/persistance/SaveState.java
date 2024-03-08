@@ -7,49 +7,51 @@ import org.json.JSONObject;
 import java.io.*;
 import java.util.ArrayList;
 
+//A class that manages JSON save files and states on quit
 //CITATION: CPSC210/JsonSerializationDemo github repo
 public class SaveState {
     private final PrintWriter writer;
     private final String saveName;
-    private static final char[] INVALID_CHARACTERS = {'<', '>', ':', '"', '/', '\\', '|', '?', '*'};
+    private static final char[] INVALID_CHARACTERS = {'<', '>', ':', '"', '/', '\\', '|', '?', '*', '.'};
 
-    public SaveState(String destination, String saveName) throws IOException {
-        if (!isValidFilename(saveName)) {
-            throw new IOException("Invalid File Name");
-        } else {
-            File file = new File(destination + saveName + ".json");
-            if (!file.createNewFile()) {
-                throw new IOException("File already exists or cannot be created");
-            } else {
-                this.writer = new PrintWriter(file);
-                this.saveName = saveName;
-            }
-        }
-    }
-
+    // REQUIRES: A valid filename corresponding to a JSON save file
+    // MODIFIES: this
+    // EFFECTS: Creates a SaveState object based on the directory / folder that manages the save data
     public SaveState(String saveName) throws IOException {
         if (!isValidFilename(saveName)) {
-            throw new IOException("Invalid File Name");
+            System.err.println("Invalid File Name");
+            throw new IOException();
         } else {
-            File file = new File("./data/" + saveName + ".json");
-            if (!file.createNewFile()) {
-                throw new IOException("File already exists or cannot be created");
-            } else {
-                this.writer = new PrintWriter(file);
-                this.saveName = saveName;
-            }
+            File file = new File("./data/" + saveName + "/" + saveName + ".json");
+            file.getParentFile().mkdir();
+            this.writer = new PrintWriter(file);
+            this.saveName = saveName;
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: prints values to the file destination set
     public void write(PhotoAlbum album) {
         JSONObject json = toJson(album);
         writer.print(json.toString(4));
     }
 
+    // MODIFIES: this
+    // EFFECTS: closes the writer
     public void close() {
         writer.close();
     }
 
+    // REQUIRES: An album with photos with unique names
+    // MODIFIES: this
+    // EFFECTS: Exports all images in a PhotoAlbum to the set file destination
+    public void exportImages(PhotoAlbum album) {
+        for (Photo photo : album.getAlbum()) {
+            photo.exportImage("./data/" + saveName + "/" + photo.getName() + ".png");
+        }
+    }
+
+    // EFFECTS: Returns true if a filename contains any illegal characters
     private boolean isValidFilename(String filename) {
         for (char invalidChar : INVALID_CHARACTERS) {
             if (filename.indexOf(invalidChar) != -1) {
@@ -59,6 +61,7 @@ public class SaveState {
         return true;
     }
 
+    // EFFECTS: Converts a Photoalbum to a savable JSON
     private JSONObject toJson(PhotoAlbum album) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", saveName);
@@ -68,6 +71,8 @@ public class SaveState {
         return jsonObject;
     }
 
+    // REQUIRES: An album with photos with unique names
+    // EFFECTS: Converts a list of photos to an array in a savable JSON file
     private JSONArray arrayToJson(ArrayList<Photo> photos) {
         JSONArray jsonArray = new JSONArray();
 
