@@ -88,7 +88,9 @@ public class SaveStateTest {
             album.addPhoto(logo);
             album.addPhoto(logo2);
             album.selectPhoto(logo2);
-            assertEquals(3, state.exportImages(album));
+            assertEquals(3, album.getAlbumSize());
+            state.exportImages(album);
+            assertEquals(3, album.getAlbumSize());
 
             for (Photo p : album.getAlbum()) {
                 assertEquals("./data/saveTest/" + p.getName() +".png", p.getUrl());
