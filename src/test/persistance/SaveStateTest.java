@@ -75,28 +75,4 @@ public class SaveStateTest {
             fail("Exception should not have been thrown");
         }
     }
-
-    @Test
-    void testExportImages() {
-        try {
-            PhotoAlbum album = new PhotoAlbum();
-            SaveState state = new SaveState("saveTest");
-            Photo pivovoice = new Photo("src/assets/input/test.png", "Picovoice");
-            Photo logo = new Photo("src/assets/input/logo-preview.png", "Columbia");
-            Photo logo2 = new Photo("src/assets/input/logo-preview.png", "Columbian");
-            album.addPhoto(pivovoice);
-            album.addPhoto(logo);
-            album.addPhoto(logo2);
-            album.selectPhoto(logo2);
-            assertEquals(3, album.getAlbumSize());
-            state.exportImages(album);
-            assertEquals(3, album.getAlbumSize());
-
-            for (Photo p : album.getAlbum()) {
-                assertEquals("./data/saveTest/" + p.getName() +".png", p.getUrl());
-            }
-        } catch (IOException e) {
-            fail ("Should not throw IOException here");
-        }
-    }
 }

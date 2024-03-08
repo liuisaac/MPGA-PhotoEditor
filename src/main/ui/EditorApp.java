@@ -212,7 +212,9 @@ public class EditorApp extends EditorUtils {
             answer = input.nextLine();
             try {
                 SaveState ss = new SaveState(answer);
-                ss.exportImages(photoAlbum);
+                for (Photo photo : photoAlbum.getAlbum()) {
+                    photo.exportImage("./data/" + ss.getSaveName() + "/" + photo.getName() + ".png");
+                }
                 ss.write(photoAlbum);
                 ss.close();
                 on = false;

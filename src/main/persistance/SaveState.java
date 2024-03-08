@@ -43,13 +43,8 @@ public class SaveState {
         writer.close();
     }
 
-    // REQUIRES: An album with photos with unique names
-    // MODIFIES: this
-    // EFFECTS: Exports all images in a PhotoAlbum to the set file destination
-    public void exportImages(PhotoAlbum album) throws IOException {
-        for (Photo photo : album.getAlbum()) {
-            photo.exportImage("./data/" + saveName + "/" + photo.getName() + ".png");
-        }
+    public String getSaveName() {
+        return saveName;
     }
 
     // EFFECTS: Returns true if a filename contains any illegal characters
