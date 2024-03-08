@@ -104,9 +104,18 @@ public class PhotoTest {
     @Test
     void exportImage() {
         assertEquals("src/assets/test/threetest.png", p.getUrl());
-        p.exportImage("./data/test/exportTest.png");
-        assertEquals("./data/test/exportTest.png", p.getUrl());
+        try {
+            p.exportImage("./data/test/exportTest.png");
+            assertEquals("./data/test/exportTest.png", p.getUrl());
 
-        p.exportImage("./data/test/exr2389hdicodshf8923hr90fh");
+            try {
+                p.exportImage("./dar/t.png");
+                fail("Should  have thrown IOException");
+            } catch (IOException b) {
+                //pass
+            }
+        } catch (IOException b) {
+            fail("Should not have thrown IOException");
+        }
     }
 }

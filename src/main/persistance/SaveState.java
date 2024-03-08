@@ -4,6 +4,7 @@ import model.Photo;
 import model.PhotoAlbum;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -45,10 +46,13 @@ public class SaveState {
     // REQUIRES: An album with photos with unique names
     // MODIFIES: this
     // EFFECTS: Exports all images in a PhotoAlbum to the set file destination
-    public void exportImages(PhotoAlbum album) {
+    public int exportImages(PhotoAlbum album) throws IOException {
+        int counter = 0;
         for (Photo photo : album.getAlbum()) {
             photo.exportImage("./data/" + saveName + "/" + photo.getName() + ".png");
+            counter++;
         }
+        return counter;
     }
 
     // EFFECTS: Returns true if a filename contains any illegal characters

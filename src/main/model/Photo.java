@@ -7,6 +7,7 @@ import ui.tools.ManageImage;
 import javax.imageio.ImageIO;
 import java.awt.image.WritableRaster;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 // A class that represents a Photo that can be modified
@@ -83,16 +84,11 @@ public class Photo extends ManageImage {
 
     // REQUIRES: A valid folder directory as a string
     // MODIFIES: this
-    // EFFECTS: Exports the photo as a new photo to the directory given
-    public void exportImage(String directory) {
-        try {
-            File outputfile = new File(directory);
-            ImageIO.write(getImageRef(), "png", outputfile);
-            this.url = directory;
-        } catch (IOException ignored) {
-            //pass
-            System.out.println("error here..");
-        }
+    // EFFECTS: Exports the photo as a new photo to the directory given and returns whether the operation was a success
+    public void exportImage(String directory) throws IOException {
+        File outputfile = new File(directory);
+        ImageIO.write(getImageRef(), "png", outputfile);
+        this.url = directory;
     }
 
     // REQUIRES: hex is a valid 6 digit hexadecimal value
