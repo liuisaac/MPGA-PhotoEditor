@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.image.WritableRaster;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -98,5 +99,14 @@ public class PhotoTest {
     void testGetName() {
         // Not necessary, just to make jacoco happy
         assertEquals(p.getName(), "p");
+    }
+
+    @Test
+    void exportImage() {
+        assertEquals("src/assets/test/threetest.png", p.getUrl());
+        p.exportImage("./data/test/exportTest.png");
+        assertEquals("./data/test/exportTest.png", p.getUrl());
+
+        p.exportImage("./data/test/exr2389hdicodshf8923hr90fh");
     }
 }
