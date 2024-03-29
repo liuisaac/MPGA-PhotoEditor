@@ -4,6 +4,6 @@ package ui;
 public class Main {
     // EFFECTS: Starts the application
     public static void main(String[] args) {
-        new EditorApp();
+        new EditorGUI();
     }
 }
