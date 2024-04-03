@@ -35,3 +35,68 @@
 - You can locate my visual component by opening a save with an image (lightning icon on the landing page)
 - You can save the state of my application by pressing the save icon while in editor on the left navbar
 - You can save the state of my application by pressing the load icon while in the landing page on the left navbar
+
+## Phase 4: Task 2
+Window Closing.
+
+LOGS
+
+Tue Apr 02 23:34:05 PDT 2024
+Added Alphadigital (Bronze) (1) to album.
+
+Tue Apr 02 23:34:05 PDT 2024
+Displayed a list of all photos.
+
+Tue Apr 02 23:34:05 PDT 2024
+Selected Alphadigital (Bronze) (1) from album.
+
+Tue Apr 02 23:34:05 PDT 2024
+Displayed a list of all photos.
+
+Tue Apr 02 23:34:05 PDT 2024
+Displayed a list of all photos.
+
+Tue Apr 02 23:34:09 PDT 2024
+Added Calgary3D (Bronze) (1) to album.
+
+Tue Apr 02 23:34:10 PDT 2024
+Displayed a list of selected photos from all photos.
+
+Tue Apr 02 23:34:15 PDT 2024
+Displayed a list of all photos.
+
+Tue Apr 02 23:34:17 PDT 2024
+Displayed a list of all photos.
+
+Tue Apr 02 23:34:17 PDT 2024
+Selected Calgary3D (Bronze) (1) from album.
+
+Tue Apr 02 23:34:18 PDT 2024
+Displayed a list of all photos.
+
+Tue Apr 02 23:34:20 PDT 2024
+Displayed a list of all photos.
+
+Tue Apr 02 23:34:20 PDT 2024
+Deselected Alphadigital (Bronze) (1) from album.
+
+Tue Apr 02 23:34:21 PDT 2024
+Displayed a list of selected photos from all photos.
+
+Tue Apr 02 23:34:22 PDT 2024
+Displayed a list of all photos.
+
+Tue Apr 02 23:34:24 PDT 2024
+Inverted selected photos.
+
+Tue Apr 02 23:34:29 PDT 2024
+Displayed a list of all photos.
+
+Tue Apr 02 23:34:43 PDT 2024
+Displayed a list of all photos.
+
+Tue Apr 02 23:34:43 PDT 2024
+Displayed a list of all photos.
+
+Tue Apr 02 23:34:43 PDT 2024
+Displayed a list of selected photos from all photos.

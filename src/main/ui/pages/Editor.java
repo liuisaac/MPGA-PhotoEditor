@@ -4,6 +4,7 @@ import model.Photo;
 import model.PhotoAlbum;
 import persistance.SaveState;
 import ui.EditorGUI;
+import ui.WFrame;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -37,6 +38,7 @@ public class Editor extends Component implements ActionListener {
         this.dashBoard = dashBoard();
 
         frame = new JFrame("make photo good applicatoin");
+        frame.addWindowListener(new WFrame("Close Listener"));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.setPreferredSize(new Dimension(1000, 650));
@@ -227,7 +229,6 @@ public class Editor extends Component implements ActionListener {
                 album.selectPhoto(p);
             }
         }
-        System.out.println("Selected " + selectBox.getSelectedItem());
     }
 
     // EFFECTS: Creates, sizes, and displays a popup button for deselection
@@ -262,7 +263,6 @@ public class Editor extends Component implements ActionListener {
                 album.deselectPhoto(p);
             }
         }
-        System.out.println("Deselected " + selectBox.getSelectedItem());
     }
 
     // EFFECTS: Creates, sizes, and displays a popup button for viewing photos
@@ -299,7 +299,6 @@ public class Editor extends Component implements ActionListener {
             }
         }
         updateImages();
-        System.out.println("Viewing " + selectBox.getSelectedItem());
     }
 
     // EFFECTS: Handles selection on the file bar
@@ -339,11 +338,10 @@ public class Editor extends Component implements ActionListener {
                 ss.write(album);
                 ss.close();
                 on = false;
-                System.out.println(" Success! File Saved to " + answer);
             } catch (IOException e) {
-                System.out.print("\n\u001B[31m invalid filename: try again");
+                //  invalid filename: try again");
             } catch (Exception exit) {
-                System.out.println("exited");
+                // exited
                 on = false;
             }
         }
@@ -363,8 +361,6 @@ public class Editor extends Component implements ActionListener {
             File file = fileChooser.getSelectedFile();
             String fileName = file.getName();
             String name = fileName.substring(0, fileName.lastIndexOf('.'));
-
-            System.out.println(name);
 
             File dest = new File("./src/assets/output/" + fileName);
 

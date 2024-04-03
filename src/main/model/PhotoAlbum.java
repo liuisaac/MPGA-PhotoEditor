@@ -18,6 +18,7 @@ public class PhotoAlbum implements SimpleEffects {
     // EFFECTS: Adds the photo to the photo album
     public void addPhoto(Photo p) {
         album.add(p);
+        EventLog.getInstance().logEvent(new Event("Added " + p.getName() + " to album."));
     }
 
     // MODIFIES: this
@@ -26,6 +27,7 @@ public class PhotoAlbum implements SimpleEffects {
         album.remove(p);
         if (!album.contains(p)) {
             selected.remove(p);
+            EventLog.getInstance().logEvent(new Event("Removed " + p.getName() + " to album."));
         }
     }
 
@@ -34,6 +36,7 @@ public class PhotoAlbum implements SimpleEffects {
     public void selectPhoto(Photo p) {
         if (album.contains(p) && !selected.contains(p)) {
             selected.add(p);
+            EventLog.getInstance().logEvent(new Event("Selected " + p.getName() + " from album."));
         }
     }
 
@@ -42,6 +45,7 @@ public class PhotoAlbum implements SimpleEffects {
     public void deselectPhoto(Photo p) {
         if (selected.contains(p)) {
             selected.remove(p);
+            EventLog.getInstance().logEvent(new Event("Deselected " + p.getName() + " from album."));
         }
     }
 
@@ -54,6 +58,8 @@ public class PhotoAlbum implements SimpleEffects {
         for (Photo p : selected) {
             p.recolor(newHex, oldHex, tolerance);
         }
+        EventLog.getInstance().logEvent(new Event("Recolored selected photos from"
+                + oldHex + " to " + newHex + "."));
     }
 
     // REQUIRES: nextColor, redBounds, greenBounds, and blueBounds are all 2 element lists [x, y],
@@ -66,6 +72,7 @@ public class PhotoAlbum implements SimpleEffects {
         for (Photo p : selected) {
             p.recolor(nextColor, redBounds, greenBounds, blueBounds);
         }
+        EventLog.getInstance().logEvent(new Event("Manually recolored selected photos."));
     }
 
     // MODIFIES: this
@@ -75,6 +82,7 @@ public class PhotoAlbum implements SimpleEffects {
         for (Photo p : selected) {
             p.blur();
         }
+        EventLog.getInstance().logEvent(new Event("Blurred selected photos."));
     }
 
     // REQUIRES: intensity >= 0
@@ -85,6 +93,7 @@ public class PhotoAlbum implements SimpleEffects {
         for (Photo p : selected) {
             p.blur(intensity);
         }
+        EventLog.getInstance().logEvent(new Event("Blurred selected photos " + intensity + " times."));
     }
 
     // MODIFIES: this
@@ -94,6 +103,7 @@ public class PhotoAlbum implements SimpleEffects {
         for (Photo p : selected) {
             p.invert();
         }
+        EventLog.getInstance().logEvent(new Event("Inverted selected photos."));
     }
 
     // MODIFIES: this
@@ -103,13 +113,16 @@ public class PhotoAlbum implements SimpleEffects {
         for (Photo p : selected) {
             p.grayscale();
         }
+        EventLog.getInstance().logEvent(new Event("Grayscaled selected photos."));
     }
 
     public ArrayList<Photo> getAlbum() {
+        EventLog.getInstance().logEvent(new Event("Displayed a list of all photos."));
         return album;
     }
 
     public ArrayList<Photo> getSelected() {
+        EventLog.getInstance().logEvent(new Event("Displayed a list of selected photos from all photos."));
         return selected;
     }
 

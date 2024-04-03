@@ -33,8 +33,6 @@ public class Quick extends Component {
             String name = fileName.substring(0, fileName.lastIndexOf('.'));
             String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
 
-            System.out.println(name);
-
             File dest = new File("./src/assets/output/" + fileName);
 
             try {

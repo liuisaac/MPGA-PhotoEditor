@@ -131,9 +131,6 @@ public class EditorGUI extends Component implements ActionListener {
     // EFFECTS: Handles requests sent when a button is clicked
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case "/logo":
-                System.out.println("nothing happens");
-                break;
             case "/quick":
                 new Quick();
                 frame.setVisible(false);
@@ -180,18 +177,16 @@ public class EditorGUI extends Component implements ActionListener {
     // EFFECTS: loads a save file to the editorand closes the current window
     private void handleLoad(JComboBox selectBox, ArrayList<String> fileNames) {
         try {
-            System.out.println("./data/" + selectBox.getSelectedItem() + "/" + selectBox.getSelectedItem() + ".json");
             LoadState openstate = new LoadState("./data/"
                     + selectBox.getSelectedItem()
                     + "/"
                     + selectBox.getSelectedItem()
                     + ".json");
             PhotoAlbum album = openstate.getAlbum();
-            System.out.println("Successfully Loaded Save!");
             new Editor(album);
             frame.setVisible(false);
         } catch (IOException e) {
-            System.out.println("Save failed. Try Again.");
+            // pass
         }
     }
 
@@ -209,7 +204,6 @@ public class EditorGUI extends Component implements ActionListener {
                     String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
 
                     if (subfile.isFile() && extension.equals("json")) {
-                        System.out.println(indexer + ". " + name);
                         fileNames.add(name);
                         indexer++;
                     }
