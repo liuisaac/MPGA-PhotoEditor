@@ -100,3 +100,16 @@ Displayed a list of all photos.
 
 Tue Apr 02 23:34:43 PDT 2024
 Displayed a list of selected photos from all photos.
+
+## Phase 4: Task 3
+**If you had more time to work on the project, what refactoring might you use to improve your design?**
+I would either switch to a library like JavaFX or switch entirely to a tech stack more appropriate for this kind of
+application. Using CSS to style rather than being bound by the limitations of Java Swing would really decrease
+development time and make the UI related parts of the project much more readable. The more algorithmic parts of the 
+project work just fine, but specifically refactoring the GUI to React/JS/HTML/CSS would be a massive improvement for 
+future expansion. Additionally, I may consider refactoring my CLI class and method structure. A lot of very different
+methods were shovelled into the Utils class, so for the sake of clarity, refactoring to abstract and couple similar
+functions (like taking in a certain input) and differentiate different parts of the CLI tool would greatly improve
+readablility, expandability, and just generally make my life easier when modifying or adding to the CLI. Just breaking
+things up and merging similar methods together would be enough for a refactor to improve the structure and design
+of the project as a whole.

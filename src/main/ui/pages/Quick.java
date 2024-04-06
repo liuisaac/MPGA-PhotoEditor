@@ -17,6 +17,7 @@ import java.nio.file.StandardCopyOption;
 // https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 public class Quick extends Component {
     private JFrame frame;
+    private static Editor editor;
 
     // EFFECTS: constructs a new Quick object that automatically manages a file chooser and then generates an Editor
     public Quick() {
@@ -44,7 +45,7 @@ public class Quick extends Component {
             PhotoAlbum startingAlbum = new PhotoAlbum();
             startingAlbum.addPhoto(new Photo("./src/assets/output/" + fileName, name));
             startingAlbum.selectPhoto(startingAlbum.getAlbum().get(0));
-            new Editor(startingAlbum);
+            editor = new Editor(startingAlbum);
         }
     }
 

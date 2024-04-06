@@ -27,6 +27,10 @@ public class Editor extends Component implements ActionListener {
     private PhotoAlbum album;
     private JPanel dashBoard;
     private Photo viewingPhoto;
+    private static EditorGUI editorGUI;
+    private static WFrame wFrame;
+    private static Quick quick;
+    private SaveState ss;
 
     // MODIFIES: this
     // EFFECTS: Constructs the Editor object, initializes fields and GUIs, kickstarts the main Editor's functions
@@ -36,9 +40,10 @@ public class Editor extends Component implements ActionListener {
                 ? new Photo("/src/assets/input/test.png", "default")
                 : album.getAlbum().get(0));
         this.dashBoard = dashBoard();
+        wFrame = new WFrame("Close Listener");
 
         frame = new JFrame("make photo good applicatoin");
-        frame.addWindowListener(new WFrame("Close Listener"));
+        frame.addWindowListener(wFrame);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.setPreferredSize(new Dimension(1000, 650));
@@ -305,12 +310,12 @@ public class Editor extends Component implements ActionListener {
     public void handleFileBar(String action) {
         switch (action) {
             case "/logo":
-                new EditorGUI();
+                editorGUI = new EditorGUI();
                 frame.setVisible(false);
                 break;
             case "/load":
                 save();
-                new Quick(); //TODO
+                quick = new Quick();
                 break;
             case "/save":
                 save();
@@ -331,7 +336,7 @@ public class Editor extends Component implements ActionListener {
             String answer = JOptionPane.showInputDialog(null,
                     "What would you like to name your save?", null);
             try {
-                SaveState ss = new SaveState(answer);
+                ss = new SaveState(answer);
                 for (Photo photo : album.getAlbum()) {
                     photo.exportImage("./data/" + ss.getSaveName() + "/" + photo.getName() + ".png");
                 }
