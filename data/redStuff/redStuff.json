@@ -1,0 +1,27 @@
+{
+    "all": [
+        {
+            "path": "./data/redStuff/Picovoice.png",
+            "name": "Picovoice"
+        },
+        {
+            "path": "./data/redStuff/Columbian.png",
+            "name": "Columbian"
+        },
+        {
+            "path": "./data/redStuff/Attabotics (Supporter).png",
+            "name": "Attabotics (Supporter)"
+        }
+    ],
+    "name": "redStuff",
+    "selected": [
+        {
+            "path": "./data/redStuff/Picovoice.png",
+            "name": "Picovoice"
+        },
+        {
+            "path": "./data/redStuff/Attabotics (Supporter).png",
+            "name": "Attabotics (Supporter)"
+        }
+    ]
+}

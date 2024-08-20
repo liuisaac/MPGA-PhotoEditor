@@ -1,0 +1,17 @@
+{
+    "all": [
+        {
+            "path": "./data/testingLogs/Alphadigital (Bronze) (1).png",
+            "name": "Alphadigital (Bronze) (1)"
+        },
+        {
+            "path": "./data/testingLogs/Calgary3D (Bronze) (1).png",
+            "name": "Calgary3D (Bronze) (1)"
+        }
+    ],
+    "name": "testingLogs",
+    "selected": [{
+        "path": "./data/testingLogs/Calgary3D (Bronze) (1).png",
+        "name": "Calgary3D (Bronze) (1)"
+    }]
+}

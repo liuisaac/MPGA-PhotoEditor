@@ -1,0 +1,21 @@
+{
+    "all": [
+        {
+            "path": "./data/editedsave3/Picovoice.png",
+            "name": "Picovoice"
+        },
+        {
+            "path": "./data/editedsave3/Columbia.png",
+            "name": "Columbia"
+        },
+        {
+            "path": "./data/editedsave3/Columbian.png",
+            "name": "Columbian"
+        }
+    ],
+    "name": "editedsave3",
+    "selected": [{
+        "path": "./data/editedsave3/Columbian.png",
+        "name": "Columbian"
+    }]
+}

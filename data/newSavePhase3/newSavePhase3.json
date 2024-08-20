@@ -1,0 +1,23 @@
+{
+    "all": [
+        {
+            "path": "./data/newSavePhase3/TC Energy Logo (Gold Sponsor).png",
+            "name": "TC Energy Logo (Gold Sponsor)"
+        },
+        {
+            "path": "./data/newSavePhase3/SSE Logo (Silver) (1).png",
+            "name": "SSE Logo (Silver) (1)"
+        }
+    ],
+    "name": "newSavePhase3",
+    "selected": [
+        {
+            "path": "./data/newSavePhase3/TC Energy Logo (Gold Sponsor).png",
+            "name": "TC Energy Logo (Gold Sponsor)"
+        },
+        {
+            "path": "./data/newSavePhase3/SSE Logo (Silver) (1).png",
+            "name": "SSE Logo (Silver) (1)"
+        }
+    ]
+}
